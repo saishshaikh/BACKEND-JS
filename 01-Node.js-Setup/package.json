@@ -1,0 +1,11 @@
+{
+  "name": "backend-course",
+  "version": "1.0.0",
+  "description": "THIS IS MY BACKEND COURSE",
+  "main": "index.js",
+  "scripts": {
+    "saish" :" node index.js"
+  },
+  "author": "saish shaikh",
+  "license": "ISC"
+}
