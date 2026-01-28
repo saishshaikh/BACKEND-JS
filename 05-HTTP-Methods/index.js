@@ -96,8 +96,11 @@ const app = express();
 const port = 8000;
 
 app.get("/search", (req, res) => {
-  console.log(req.query)
-  res.send("HELLO");
+  // console.log(req.query)   ............Agr console me dekhna hai query search me dali he o uske liye
+  // res.send("HELLO"); 
+  
+  //  let query=req.query   //...........web page pe json formt me dekhne ke liye 
+  res.json(query);
 });
 
 app.listen(port, () => {
