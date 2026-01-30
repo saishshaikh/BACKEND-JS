@@ -40,6 +40,15 @@ app.post("/Create", async (req, res) => {
 
 })
 
+app.get("/Read",(req,res)=>{
+   try {
+const users = user.find()
+res.status(200).json(users)
+   } catch {
+
+   }
+})
+
 app.listen(port, () => {  
   connectDB()
   console.log("SERVER STARTED..." + port)
