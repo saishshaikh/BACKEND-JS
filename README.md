@@ -98,3 +98,21 @@ $toString = string me convert
 $cond = if else
 $ifNull = null ho to value
 $mergeObjects = objects merge
+
+
+
+// MongoDB Update Operators (List + Uses)
+
+// • $set – field ki value change/add karna
+// • $unset – field delete karna
+// • $inc – number increase/decrease karna
+// • $mul – number multiply karna
+// • $rename – field ka naam change karna
+
+// • $push – array me value add karna
+// • $addToSet – array me unique value add karna (duplicate nahi)
+// • $pull – array se value remove karna
+// • $pop – array se first ya last value remove karna
+
+// • $currentDate – current date/time set karna
+// • $setOnInsert – sirf new document create hone par value set karna (upsert me)
