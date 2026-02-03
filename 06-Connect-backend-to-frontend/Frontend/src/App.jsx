@@ -45,7 +45,7 @@ const App = () => {
     Axios.post("http://localhost:8000/", {
       username,
       age,
-      city
+      city 
     })
     .then((res) => {
       console.log(res.data)
