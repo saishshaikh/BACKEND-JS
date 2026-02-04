@@ -1,6 +1,6 @@
 
 import mongoose from "mongoose";
-import mongoosefrom  from "mongoose";
+
 
 const UserSchema =new mongoose.Schema({
     FirstName:{

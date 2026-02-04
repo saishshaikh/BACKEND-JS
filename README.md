@@ -116,3 +116,13 @@ $mergeObjects = objects merge
 
 // • $currentDate – current date/time set karna
 // • $setOnInsert – sirf new document create hone par value set karna (upsert me)
+
+
+
+
+
+
+// AUTHENTICATION //
+
+
+
