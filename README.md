@@ -101,7 +101,7 @@ $mergeObjects = objects merge
 
 
 
-// MongoDB Update Operators (List + Uses)
+//5) MongoDB Update Operators (List + Uses)
 
 // • $set – field ki value change/add karna
 // • $unset – field delete karna
@@ -122,7 +122,36 @@ $mergeObjects = objects merge
 
 
 
-// AUTHENTICATION //
+// 6)AUTHENTICATION //  => Authentication is verifying a user’s identity
 
 
 
+AUTHENTICATION  FLOW 
+
+
+           AUTHENTICATION
+                 |
+     --------------------------------
+     |              |              |
+   SIGN UP        LOGIN         LOGOUT
+     |              |              |
+Input details   Input details   Clear cookie
+     |              |              |
+Hash password   Compare password   |
+     |              |              |
+Create user     Generate JWT       |
+     |              |              |
+Generate JWT    Save in cookie     |
+     |              |              |
+Save in cookie  Success login   Success logout
+     |
+Success signup
+
+
+### Packages ##
+
+ for hash password = npm i bencrypt 
+
+JWT {jsonwebtoken}   for tht we use = npm i jsonwebtoken
+
+ for token pass on cookies we use packge =   npm i cookie-parser   (use as middleware)
