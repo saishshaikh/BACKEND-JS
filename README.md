@@ -129,23 +129,14 @@ $mergeObjects = objects merge
 AUTHENTICATION  FLOW 
 
 
-           AUTHENTICATION
-                 |
-     --------------------------------
-     |              |              |
-   SIGN UP        LOGIN         LOGOUT
-     |              |              |
-Input details   Input details   Clear cookie
-     |              |              |
-Hash password   Compare password   |
-     |              |              |
-Create user     Generate JWT       |
-     |              |              |
-Generate JWT    Save in cookie     |
-     |              |              |
-Save in cookie  Success login   Success logout
-     |
-Success signup
+SIGN UP:
+Input → Hash password → Create user → Generate token → Save cookie
+
+LOGIN:
+Input → Verify password → Generate token → Save cookie
+
+LOGOUT:
+Clear cookie → Done
 
 
 ### Packages ##
