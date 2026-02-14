@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import "../index.css";
 import logo from "../assets/logo.png";
 import { DataContext } from "../Context/UserContext";
@@ -25,8 +26,7 @@ const Login = () => {
 
       console.log("Login Success:", response.data);
     } catch (error) {
-            console.log(error.response?.data.message || error.message);
-
+      console.log(error.response?.data.message || error.message);
     }
   };
 
@@ -70,6 +70,15 @@ const Login = () => {
           >
             Login
           </button>
+
+          {/* ✅ Added Signup Redirect */}
+          <p className="text-white text-sm">
+            Don't have an account?{" "}
+            <Link to="/signup" className="text-green-500 hover:underline">
+              Sign Up
+            </Link>
+          </p>
+
         </form>
       </div>
     </div>

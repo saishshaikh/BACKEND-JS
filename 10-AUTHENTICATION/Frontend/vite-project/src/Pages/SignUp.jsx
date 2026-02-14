@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import "../index.css";
 import logo from "../assets/logo.png";
@@ -13,18 +13,39 @@ function SignUp() {
   const [UserName, setUserName] = useState("");
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
+  const [ProfilePic, setProfilePic] = useState(null);
+
+  const fileInputRef = useRef(null);   // ✅ Added
 
   const handleSignup = async (e) => {
     e.preventDefault();
 
     try {
+      const formData = new FormData();
+
+      formData.append("FirstName", FirstName);
+      formData.append("LastName", LastName);
+      formData.append("UserName", UserName);
+      formData.append("Email", Email);
+      formData.append("Password", Password);
+
+      if (ProfilePic) {
+        formData.append("ProfilePic", ProfilePic);
+      }
+
       const response = await axios.post(
         `${ServerUrl}/api/signup`,
-        { FirstName, LastName, UserName, Email, Password },
-        { withCredentials: true }
+        formData,
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
 
       console.log("Signup Success:", response.data);
+
     } catch (error) {
       console.log(error.response?.data?.message || error.message);
     }
@@ -34,10 +55,21 @@ function SignUp() {
     <div className="w-full h-screen bg-black flex justify-center items-center">
       <div className="w-[90%] max-w-[500px] h-[650px] bg-[#141f1f] rounded-lg flex flex-col justify-center items-center gap-[20px] p-4">
 
+        {/* ✅ Clickable Image */}
         <img
-          src={logo}
+          src={ProfilePic ? URL.createObjectURL(ProfilePic) : logo}
           alt="Logo"
-          className="w-24 h-24 object-cover rounded-full border-4 border-green-500 shadow-lg"
+          onClick={() => fileInputRef.current.click()}
+          className="w-24 h-24 object-cover rounded-full border-4 border-green-500 shadow-lg cursor-pointer"
+        />
+
+        {/* ✅ Hidden File Input */}
+        <input
+          type="file"
+          accept="image/*"
+          ref={fileInputRef}
+          style={{ display: "none" }}
+          onChange={(e) => setProfilePic(e.target.files[0])}
         />
 
         <h1 className="text-white text-[22px] font-semibold">Sign Up</h1>
