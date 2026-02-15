@@ -6,6 +6,7 @@ import { DataContext } from "../Context/UserContext";
 import axios from "axios";
 
 function SignUp() {
+
   const { ServerUrl } = useContext(DataContext);
 
   const [FirstName, setFirstName] = useState("");
@@ -13,9 +14,9 @@ function SignUp() {
   const [UserName, setUserName] = useState("");
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
-  const [ProfilePic, setProfilePic] = useState(null);
+  const [Profileimg, setProfileimg] = useState(null);
 
-  const fileInputRef = useRef(null);   // ✅ Added
+  const fileInputRef = useRef(null);
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -29,25 +30,22 @@ function SignUp() {
       formData.append("Email", Email);
       formData.append("Password", Password);
 
-      if (ProfilePic) {
-        formData.append("ProfilePic", ProfilePic);
+      if (Profileimg) {
+        formData.append("Profileimg", Profileimg);
       }
 
       const response = await axios.post(
         `${ServerUrl}/api/signup`,
         formData,
         {
-          withCredentials: true,
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
+          withCredentials: true
         }
       );
 
       console.log("Signup Success:", response.data);
 
     } catch (error) {
-      console.log(error.response?.data?.message || error.message);
+      console.log("Error:", error.response?.data || error.message);
     }
   };
 
@@ -55,21 +53,21 @@ function SignUp() {
     <div className="w-full h-screen bg-black flex justify-center items-center">
       <div className="w-[90%] max-w-[500px] h-[650px] bg-[#141f1f] rounded-lg flex flex-col justify-center items-center gap-[20px] p-4">
 
-        {/* ✅ Clickable Image */}
+        {/* Clickable Profile Image */}
         <img
-          src={ProfilePic ? URL.createObjectURL(ProfilePic) : logo}
-          alt="Logo"
+          src={Profileimg ? URL.createObjectURL(Profileimg) : logo}
+          alt="Profile"
           onClick={() => fileInputRef.current.click()}
           className="w-24 h-24 object-cover rounded-full border-4 border-green-500 shadow-lg cursor-pointer"
         />
 
-        {/* ✅ Hidden File Input */}
+        {/* Hidden File Input */}
         <input
           type="file"
           accept="image/*"
           ref={fileInputRef}
           style={{ display: "none" }}
-          onChange={(e) => setProfilePic(e.target.files[0])}
+          onChange={(e) => setProfileimg(e.target.files[0])}
         />
 
         <h1 className="text-white text-[22px] font-semibold">Sign Up</h1>
@@ -139,6 +137,7 @@ function SignUp() {
             </Link>
           </p>
         </form>
+
       </div>
     </div>
   );
