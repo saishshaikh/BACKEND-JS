@@ -5,7 +5,7 @@
   font-family: Arial, sans-serif;
 }
 
-.container {
+.signup-container {
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -13,12 +13,12 @@
   background: #111;
 }
 
-.box {
-  width: 350px;
+.signup-box {
+  width: 360px;
   padding: 40px;
   background: #1e1e1e;
   border: 2px solid #00f2ff;
-  animation: fadeIn 0.8s ease-in-out;
+  animation: slideUp 0.7s ease-in-out;
 }
 
 /* Rectangle only */
@@ -27,7 +27,7 @@ button {
   border-radius: 0;
 }
 
-@keyframes fadeIn {
+@keyframes slideUp {
   from {
     opacity: 0;
     transform: translateY(40px);
@@ -44,12 +44,12 @@ h2 {
   color: #00f2ff;
 }
 
-.field {
+.input-group {
   position: relative;
   margin-bottom: 25px;
 }
 
-.field input {
+.input-group input {
   width: 100%;
   padding: 10px;
   background: transparent;
@@ -59,7 +59,7 @@ h2 {
   outline: none;
 }
 
-.field label {
+.input-group label {
   position: absolute;
   left: 10px;
   top: 10px;
@@ -67,8 +67,8 @@ h2 {
   transition: 0.3s;
 }
 
-.field input:focus + label,
-.field input:not(:placeholder-shown) + label {
+.input-group input:focus + label,
+.input-group input:valid + label {
   top: -15px;
   font-size: 12px;
   color: #00f2ff;
