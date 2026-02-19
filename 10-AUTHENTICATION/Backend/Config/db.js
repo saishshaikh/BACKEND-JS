@@ -9,3 +9,6 @@ export const connectDB =async () => {
         console.log ("DB ERROR",error)
     }
 }
+
+
+export default connectDB
