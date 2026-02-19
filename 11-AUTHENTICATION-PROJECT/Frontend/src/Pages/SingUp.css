@@ -2,35 +2,59 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: "Segoe UI", sans-serif;
 }
 
+html, body {
+  height: 100%;
+}
+
+/* Animated gradient background */
 .signup-container {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #111;
+  background: linear-gradient(-45deg, #0f0f0f, #001f24, #0a0a0a, #001a1f);
+  background-size: 400% 400%;
+  animation: gradientMove 10s ease infinite;
 }
 
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Glass + glow card */
 .signup-box {
-  width: 360px;
-  padding: 40px;
-  background: #1e1e1e;
-  border: 2px solid #00f2ff;
-  animation: slideUp 0.7s ease-in-out;
+  width: 400px;
+  padding: 50px;
+  background: rgba(20, 20, 20, 0.7);
+  border: 1px solid rgba(0, 242, 255, 0.4);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 0 40px rgba(0, 242, 255, 0.3);
+  animation: slideUp 0.8s ease;
+  position: relative;
 }
 
-/* Rectangle only */
-input,
-button {
+/* Extra glowing border animation */
+.signup-box::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
   border-radius: 0;
+  background: linear-gradient(90deg, #00f2ff, #00c3cc, #00f2ff);
+  z-index: -1;
+  filter: blur(8px);
+  opacity: 0.6;
 }
 
+/* Smooth entry */
 @keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(60px);
   }
   to {
     opacity: 1;
@@ -40,31 +64,41 @@ button {
 
 h2 {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   color: #00f2ff;
+  letter-spacing: 2px;
 }
 
+/* Inputs */
 .input-group {
   position: relative;
-  margin-bottom: 25px;
+  margin-bottom: 35px;
 }
 
 .input-group input {
   width: 100%;
-  padding: 10px;
+  padding: 12px 10px;
   background: transparent;
   border: none;
-  border-bottom: 2px solid #555;
+  border-bottom: 2px solid #444;
   color: white;
+  font-size: 15px;
   outline: none;
+  transition: 0.3s;
+}
+
+.input-group input:focus {
+  border-bottom: 2px solid #00f2ff;
+  box-shadow: 0 6px 15px rgba(0, 242, 255, 0.3);
 }
 
 .input-group label {
   position: absolute;
   left: 10px;
-  top: 10px;
+  top: 12px;
   color: #777;
   transition: 0.3s;
+  pointer-events: none;
 }
 
 .input-group input:focus + label,
@@ -74,16 +108,24 @@ h2 {
   color: #00f2ff;
 }
 
+/* Button */
 button {
   width: 100%;
-  padding: 12px;
-  background: #00f2ff;
+  padding: 15px;
+  background: linear-gradient(90deg, #00f2ff, #00c3cc);
   color: black;
   border: none;
+  font-weight: bold;
+  letter-spacing: 1px;
   cursor: pointer;
   transition: 0.3s;
 }
 
 button:hover {
-  background: #00c3cc;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 25px rgba(0, 242, 255, 0.5);
+}
+
+button:active {
+  transform: scale(0.98);
 }
